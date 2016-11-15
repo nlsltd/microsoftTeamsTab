@@ -1,0 +1,29 @@
+{
+    "$schema": "https://statics.teams.microsoft.com/sdk/v0.2/manifest/MicrosoftTeams.schema.json",
+    "manifestVersion": "0.2",
+    "id": "nlsltd.teams.tab.github.test",
+    "version": "0.2",
+    "name": "NLS",
+    "developer": {
+        "name": "NLS ltd",   
+        "websiteUrl": "http://www.nlsltd.com/",
+        "privacyUrl": "http://www.nlsltd.com/",
+        "termsOfUseUrl": "http://www.nlsltd.com/"
+    },
+    "description" : {
+            "short": "Host GitHub comments/notifications as a Tab.",
+            "full": "Host GitHub comments/notifications as a Tab."
+    },
+    "icons": {
+            "44": "maps44.png",
+            "88": "maps88.png"
+    },
+    "accentColor" : "#223344",
+    "configUrl": "https://teams-get-started-sample.azurewebsites.net/tabconfig.html",
+    "canUpdateConfig": true,
+    "needsIdentity": false,
+    "validDomains": [
+        "*.bing.com",
+        "*.google.com"
+    ]
+}
