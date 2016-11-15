@@ -1,40 +1,43 @@
+
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license. -->
+<!-- See LICENSE in the project root for license information -->
+
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <script src="https://statics.teams.microsoft.com/sdk/v0.2/js/MicrosoftTeams.js"></script>
-  </head>
-
+<html>
   <body>
+    <form>
+      <input type="radio" name="maptype" value="bing" onclick="onClick()"> Bing Maps
+      <br>
+      <input type="radio" name="maptype" value="google" onclick="onClick()"> Google Maps
+    </form>
 
-    <div class="container">
+    <script src="https://statics.teams.microsoft.com/sdk/v0.2/js/MicrosoftTeams.js"></script>
 
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="text" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <label class="checkbox">
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" onClick="onClick()">Sign in</button>
-      </form>	  
-	  
-    </div>
-	
     <script type="text/javascript">
-microsoftTeams.initialize();
-    saveEvent.notifySuccess();
-});
+      microsoftTeams.initialize();
+      microsoftTeams.settings.registerOnSaveHandler(function(saveEvent) {
+        var radios = document.getElementsByName('maptype');
+        if (radios[0].checked) {
+          microsoftTeams.settings.setSettings({
+            contentUrl: "https://www.bing.com/maps/embed",
+            suggestedTabName: "Bing Map",
+            websiteUrl: "https://www.bing.com/maps",
+            removeUrl: window.location.origin + "/tabremove.html"
+          });
+        } else {
+          microsoftTeams.settings.setSettings({
+            contentUrl: "https://www.google.com/maps/embed",
+            suggestedTabName: "Google Map",
+            websiteUrl: "https://www.google.com/maps",
+            removeUrl: window.location.origin + "/tabremove.html"
+          });
+        }
+        saveEvent.notifySuccess();
+      });
 
-function onClick() {
-    microsoftTeams.settings.setValidityState(true);
-}
-    </script>	
-	
-	
+      function onClick() {
+        microsoftTeams.settings.setValidityState(true);
+      }
+    </script>
   </body>
 </html>
